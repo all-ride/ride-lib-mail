@@ -2,7 +2,7 @@
     "name": "pallo/lib-mail",
     "description": "Mail library of the Pallo framework",
     "license": "MIT",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-0": {
-            "pallo\\library\\mail\\": ["src/"],
+            "pallo\\library\\mail\\": ["src/"]
         }
     }
 }
