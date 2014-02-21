@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\library\mail\transport;
+namespace ride\library\mail\transport;
 
-use pallo\library\log\Log;
-use pallo\library\mail\MailMessage;
+use ride\library\log\Log;
+use ride\library\mail\MailMessage;
 
 /**
  * Abstract mail transport with common methods
@@ -30,7 +30,7 @@ abstract class AbstractTransport implements Transport {
 
     /**
      * Instance of the Log
-     * @var pallo\library\log\Log
+     * @var ride\library\log\Log
      */
     protected $log;
 
@@ -107,7 +107,7 @@ abstract class AbstractTransport implements Transport {
 
     /**
      * Creates a mail message
-     * @return pallo\library\mail\MailMessage
+     * @return ride\library\mail\MailMessage
      */
     public function createMessage() {
         return new MailMessage();

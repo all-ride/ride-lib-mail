@@ -1,8 +1,8 @@
 <?php
 
-namespace pallo\library\mail\transport;
+namespace ride\library\mail\transport;
 
-use pallo\library\mail\MailMessage;
+use ride\library\mail\MailMessage;
 
 /**
  * Interface for the mail transport
@@ -11,13 +11,13 @@ interface Transport {
 
     /**
      * Creates a mail message
-     * @return pallo\library\mail\MailMessage
+     * @return ride\library\mail\MailMessage
      */
     public function createMessage();
 
     /**
      * Delivers a mail message
-     * @param pallo\library\mail\MailMessage $message
+     * @param ride\library\mail\MailMessage $message
      * @return null
      */
     public function send(MailMessage $message);

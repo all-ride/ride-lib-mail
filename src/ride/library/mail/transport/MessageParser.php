@@ -1,11 +1,11 @@
 <?php
 
-namespace pallo\library\mail\transport;
+namespace ride\library\mail\transport;
 
-use pallo\library\mail\exception\MailException;
-use pallo\library\mail\MailAddress;
-use pallo\library\mail\MailMessage;
-use pallo\library\mail\MimePart;
+use ride\library\mail\exception\MailException;
+use ride\library\mail\MailAddress;
+use ride\library\mail\MailMessage;
+use ride\library\mail\MimePart;
 
 /**
  * Object to parse mail message objects into the parts needed to actually send the message
@@ -134,7 +134,7 @@ class MessageParser {
 
     /**
      * Parses the provided message and get all data to actually send it
-     * @param pallo\library\mail\MailMessage $message The message to parse
+     * @param ride\library\mail\MailMessage $message The message to parse
      * @param string $defaultSender Address of the default sender
      * @param string $debugRecipient When set, the message will be parsed to be
      * sent only to this address
@@ -173,7 +173,7 @@ class MessageParser {
 
     /**
      * Parses the headers and the body from the provided message
-     * @param pallo\library\mail\MailMessage $message The message to parse
+     * @param ride\library\mail\MailMessage $message The message to parse
      * @param array $variables Array with variables to replace in the body
      * @return null
      */
@@ -191,7 +191,7 @@ class MessageParser {
 
     /**
      * Parses the addresses of the provided message and adds them to the headers of the message
-     * @param pallo\library\mail\MailMessage $message The message to parse the addresses of
+     * @param ride\library\mail\MailMessage $message The message to parse the addresses of
      * @return null
      */
     private function parseAddresses(MailMessage $message) {
@@ -252,7 +252,7 @@ class MessageParser {
 
     /**
      * Parses the headers of the provided message
-     * @param pallo\library\mail\MailMessage $message The message to parse the headers of
+     * @param ride\library\mail\MailMessage $message The message to parse the headers of
      * @return null
      */
     private function parseHeaders(MailMessage $message) {
@@ -281,7 +281,7 @@ class MessageParser {
 
     /**
      * Parses the body parts of the provided message
-     * @param pallo\library\mail\MailMessage $message The message to parse the parts of
+     * @param ride\library\mail\MailMessage $message The message to parse the parts of
      * @return null
      */
     private function parseParts(MailMessage $message) {
@@ -345,8 +345,8 @@ class MessageParser {
 
     /**
      * Adds the body and the alternative body to the body of the mail
-     * @param pallo\library\mail\MimePart $body The MIME part of the body (HTML)
-     * @param pallo\library\mail\MimePart $alternative The MIME part of the alternative body (plain text)
+     * @param ride\library\mail\MimePart $body The MIME part of the body (HTML)
+     * @param ride\library\mail\MimePart $alternative The MIME part of the alternative body (plain text)
      * @param string $salt The salt to delimit the parts
      * @return null
      */
@@ -360,7 +360,7 @@ class MessageParser {
 
     /**
      * Adds a MIME part to the body of the message
-     * @param pallo\library\mail\MimePart $part The MIME part to add
+     * @param ride\library\mail\MimePart $part The MIME part to add
      * @param array $variables Array with variables to replace in the body of the part
      * @param boolean $skipHeaders Set to true to skip the content type and transfer encoding
      * @return null
@@ -376,7 +376,7 @@ class MessageParser {
 
     /**
      * Adds a attachment to the body of the message
-     * @param pallo\library\mail\MimePart $part The MIME part of the attachment
+     * @param ride\library\mail\MimePart $part The MIME part of the attachment
      * @param string $name The name of the attachment
      * @return null
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\mail;
+namespace ride\library\mail;
 
 /**
  * A MIME part of a mail message
