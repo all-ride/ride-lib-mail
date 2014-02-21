@@ -1,3 +1,3 @@
-# Pallo: Mail Library
+# Ride: Mail Library
 
-Mail library of the PHP Pallo framework.
+Mail library of the PHP Ride framework.

@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\library\mail\transport;
+namespace ride\library\mail\transport;
 
-use pallo\library\mail\exception\MailException;
-use pallo\library\mail\MailMessage;
+use ride\library\mail\exception\MailException;
+use ride\library\mail\MailMessage;
 
 /**
  * Simple message transport using PHP's mail function
@@ -12,9 +12,9 @@ class SimpleTransport extends AbstractTransport {
 
     /**
      * Deliver a mail message to the server mail transport using PHP's mail
-     * @param pallo\library\mail\MailMessage $message The message to send
+     * @param ride\library\mail\MailMessage $message The message to send
      * @return null
-     * @throws pallo\library\mail\exception\MailException when the message is not
+     * @throws ride\library\mail\exception\MailException when the message is not
      * accepted for delivery. Check the installation of the mail tools on the
      * server.
      */

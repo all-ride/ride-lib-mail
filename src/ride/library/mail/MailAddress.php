@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\library\mail;
+namespace ride\library\mail;
 
-use pallo\library\mail\exception\MailException;
-use pallo\library\validation\validator\EmailValidator;
+use ride\library\mail\exception\MailException;
+use ride\library\validation\validator\EmailValidator;
 
 /**
  * Partial implementation of the address specification of {@link http://www.rfc-editor.org/rfc/rfc2822.txt
@@ -39,7 +39,7 @@ class MailAddress {
      * Constructs a new address
      * @param string $address The email address in one of the supported formats
      * @return null
-     * @throws pallo\library\mail\exception\MailException when the provided address is empty or invalid
+     * @throws ride\library\mail\exception\MailException when the provided address is empty or invalid
      */
     public function __construct($address) {
         if (!is_string($address) || $address == '') {

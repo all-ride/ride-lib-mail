@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\mail\exception;
+namespace ride\library\mail\exception;
 
 use \Exception;
 

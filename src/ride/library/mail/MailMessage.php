@@ -1,8 +1,8 @@
 <?php
 
-namespace pallo\library\mail;
+namespace ride\library\mail;
 
-use pallo\library\mail\exception\MailException;
+use ride\library\mail\exception\MailException;
 
 /**
  * A e-mail message: container of all the data to send a message
@@ -332,7 +332,7 @@ class MailMessage {
 
     /**
      * Adds a file attachment to this message
-     * @param pallo\library\filesystem\File $attachment The file forthe attachment
+     * @param ride\library\filesystem\File $attachment The file forthe attachment
      * @return string The name of the attachment MIME part
      */
     public function addAttachment(File $attachment, $mime = 'application/octet-stream') {
@@ -365,7 +365,7 @@ class MailMessage {
      * Removes a MIME part from this message
      * @param string $name Name of the MIME part
      * @return null
-     * @throws pallo\library\mail\exception\MailException when the part could not be found
+     * @throws ride\library\mail\exception\MailException when the part could not be found
      */
     public function removePart($name) {
         if (!$this->hasPart($name)) {
@@ -379,7 +379,7 @@ class MailMessage {
      * Gets a MIME part of this message
      * @param string $name Name of the MIME part
      * @return MimePart
-     * @throws pallo\library\mail\exception\MailException when the part could not be found
+     * @throws ride\library\mail\exception\MailException when the part could not be found
      */
     public function getPart($name) {
         if (!$this->hasPart($name)) {
@@ -471,7 +471,7 @@ class MailMessage {
      * For more details see RFC3834 - Recommendations for Automatic Responses to Electronic Mail
      * @param string $autoSubmitted Auto submit value (no, auto-generated or auto-replied
      * @return null
-     * @throws pallo\library\mail\exception\MailException When the provided value is invalid
+     * @throws ride\library\mail\exception\MailException When the provided value is invalid
      */
     public function setAutoSubmitted($autoSubmitted) {
         if (!in_array($autoSubmitted, array(self::AUTO_SUBMITTED_NO, self::AUTO_SUBMITTED_GENERATED, self::AUTO_SUBMITTED_REPLIED))) {
