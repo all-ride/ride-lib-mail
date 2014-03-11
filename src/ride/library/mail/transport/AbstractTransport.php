@@ -130,9 +130,9 @@ abstract class AbstractTransport implements Transport {
      * @return null
      */
     protected function logMail($subject, $headers, $result) {
-        $title = 'Sending mail with subject \'' . $subject . '\'';
-        $description = "Headers:\n" . $headers;
         $isError = !$result ? 1 : 0;
+        $title = ($isError ? 'Sent' : 'Could not send') . ' mail with subject \'' . $subject . '\'';
+        $description = "Headers:\n" . $headers;
 
         $this->log($title, $description, $isError);
     }
