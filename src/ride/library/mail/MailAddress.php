@@ -39,7 +39,7 @@ class MailAddress {
      * Constructs a new address
      * @param string $address The email address in one of the supported formats
      * @return null
-     * @throws ride\library\mail\exception\MailException when the provided address is empty or invalid
+     * @throws \ride\library\mail\exception\MailException when the provided address is empty or invalid
      */
     public function __construct($address) {
         if (!is_string($address) || $address == '') {
