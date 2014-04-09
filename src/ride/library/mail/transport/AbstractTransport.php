@@ -30,7 +30,7 @@ abstract class AbstractTransport implements Transport {
 
     /**
      * Instance of the Log
-     * @var ride\library\log\Log
+     * @var \ride\library\log\Log
      */
     protected $log;
 
@@ -107,7 +107,7 @@ abstract class AbstractTransport implements Transport {
 
     /**
      * Creates a mail message
-     * @return ride\library\mail\MailMessage
+     * @return \ride\library\mail\MailMessage
      */
     public function createMessage() {
         return new MailMessage();
