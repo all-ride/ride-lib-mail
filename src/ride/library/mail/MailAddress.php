@@ -6,14 +6,9 @@ use ride\library\mail\exception\MailException;
 use ride\library\validation\validator\EmailValidator;
 
 /**
- * Partial implementation of the address specification of {@link http://www.rfc-editor.org/rfc/rfc2822.txt
- * RFC 2822: Internet Message Format}.
- *
- * Supported formats are:
- * <ul>
- *     <li>display-name <addr-spec>, for example: User <user@example.com></li>
- *     <li>addr-spec, for example: user@example.com</li>
- * </ul>
+ * Partial implementation of the address specification of RFC 2822: Internet
+ * Message Format
+ * @link http://www.rfc-editor.org/rfc/rfc2822.txt
  */
 class MailAddress {
 
@@ -37,13 +32,29 @@ class MailAddress {
 
     /**
      * Constructs a new address
-     * @param string $address The email address in one of the supported formats
+     * @param string|MailAddress $address Email address in one of the supported
+     * formats
+     *
+     * <p>Supported formats:</p>
+     * <ul>
+     * <li>name@domain.com</li>
+     * <li>Name &lt;name@domain.com></li>
+     * <li>Instance of MailAddress</li>
+     * </ul>
      * @return null
-     * @throws ride\library\mail\exception\MailException when the provided address is empty or invalid
+     * @throws ride\library\mail\exception\MailException when the provided
+     * address is empty or invalid
      */
     public function __construct($address) {
+        if ($address instanceof self) {
+            $this->displayName = $address->getDisplayName();
+            $this->emailAddress = $address->getEmailAddress();
+
+            return;
+        }
+
         if (!is_string($address) || $address == '') {
-            throw new MailException('Invalid address provided', 0);
+            throw new MailException('Could not create new mail address: address is empty or not a string');
         }
 
         $address = trim($address);
