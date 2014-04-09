@@ -11,13 +11,13 @@ interface Transport {
 
     /**
      * Creates a mail message
-     * @return ride\library\mail\MailMessage
+     * @return \ride\library\mail\MailMessage
      */
     public function createMessage();
 
     /**
      * Delivers a mail message
-     * @param ride\library\mail\MailMessage $message
+     * @param \ride\library\mail\MailMessage $message
      * @return null
      */
     public function send(MailMessage $message);
