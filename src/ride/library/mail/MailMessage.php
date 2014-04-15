@@ -3,6 +3,7 @@
 namespace ride\library\mail;
 
 use ride\library\mail\exception\MailException;
+use ride\library\system\file\File;
 
 /**
  * A e-mail message: container of all the data to send a message
@@ -340,7 +341,7 @@ class MailMessage {
         $content = chunk_split(base64_encode($content));
 
         $part = new MimePart($content, $mime);
-        $part->setEncoding(MimePart::ENCODING_BASE64);
+        $part->setTransferEncoding(MimePart::ENCODING_BASE64);
 
         return $this->addPart($part, $attachment->getName());
     }
