@@ -2,7 +2,7 @@
     "name": "ride/lib-mail",
     "description": "Mail library of the Ride framework",
     "license": "MIT",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -11,7 +11,8 @@
     ],
     "require": {
         "ride/lib-log": ">=0.2.0",
-        "ride/lib-validation": ">=0.1.0"
+        "ride/lib-validation": ">=0.1.0",
+        "ride/lib-system": ">=4.0.0"
     },
     "autoload": {
         "psr-0": {
