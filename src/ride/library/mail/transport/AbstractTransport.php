@@ -126,12 +126,11 @@ abstract class AbstractTransport implements Transport {
      * Log the sending of a message
      * @param string $subject Subject of the message
      * @param string $headers String with the headers
-     * @param boolean $result Flag to see if the message is accepted for sending
+     * @param boolean $isError Flag to see if the message is accepted for sending
      * @return null
      */
-    protected function logMail($subject, $headers, $result) {
-        $isError = !$result ? 1 : 0;
-        $title = ($isError ? 'Sent' : 'Could not send') . ' mail with subject \'' . $subject . '\'';
+    protected function logMail($subject, $headers, $isError) {
+        $title = ($isError ? 'Could not send' : 'Send') . ' mail with subject \'' . $subject . '\'';
         $description = "Headers:\n" . $headers;
 
         $this->log($title, $description, $isError);
