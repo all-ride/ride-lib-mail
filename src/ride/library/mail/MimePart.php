@@ -92,6 +92,12 @@ class MimePart {
     private $mime;
 
     /**
+     * Attributes of this part
+     * @var array
+     */
+    private $attributes;
+
+    /**
      * Constructs a new MIME part
      * @param string $body The body of the part
      * @param string $mime The MIME type of the part, defaults to plain text
@@ -99,7 +105,9 @@ class MimePart {
      * @param string $encoding The encoding of this part, defaults to 7bit
      * @return null
      */
-    public function __construct($body = null, $mime = null, $charset = null, $encoding = null) {
+    public function __construct($body = null, $mime = null, $charset = null, $encoding = null, $wrap = true) {
+        $this->attributes = array();
+
         if ($mime === null) {
             $mime = self::MIME_TEXT_PLAIN;
         }
@@ -110,7 +118,7 @@ class MimePart {
             $encoding = self::ENCODING_7BIT;
         }
 
-        $this->setBody($body);
+        $this->setBody($body, $wrap);
         $this->setCharset($charset);
         $this->setMimeType($mime);
         $this->setTransferEncoding($encoding);
@@ -121,8 +129,11 @@ class MimePart {
      * @param string $body The body of this part
      * @return null
      */
-    public function setBody($body) {
-        $body = wordwrap($body, self::LINE_LENGTH, self::LINE_BREAK);
+    public function setBody($body, $wrap = true) {
+        if ($wrap) {
+            $body = wordwrap($body, self::LINE_LENGTH, self::LINE_BREAK);
+        }
+
         $this->body = $body;
     }
 
@@ -135,12 +146,34 @@ class MimePart {
     }
 
     /**
+     * Gets the decoded body for display
+     * @return string
+     */
+    public function getDecodedBody() {
+        if ($this->encoding == self::ENCODING_BASE64) {
+            return base64_decode($this->body);
+        } elseif ($this->encoding == self::ENCODING_QUOTED_PRINTABLE) {
+            return quoted_printable_decode($this->body);
+        }
+
+        return $this->body;
+    }
+
+    /**
+     * Gets the size of the body
+     * @return integer
+     */
+    public function getSize() {
+        return strlen($this->body);
+    }
+
+    /**
      * Sets the character set of this part
      * @param string $charset The characterset
      * @return null
      */
     public function setCharset($charset) {
-        $this->charset = $charset;
+        $this->attributes['charset'] = $charset;
     }
 
     /**
@@ -148,7 +181,29 @@ class MimePart {
      * @return string
      */
     public function getCharset() {
-        return $this->charset;
+        if (!isset($this->attributes['charset'])) {
+            return null;
+        }
+
+        return $this->attributes['charset'];
+    }
+
+    /**
+     * Sets a encoding attribute
+     * @param string $name
+     * @param string $value
+     * @return null
+     */
+    public function setAttribute($name, $value) {
+        $this->attributes[strtolower($name)] = $value;
+    }
+
+    /**
+     * Gets the encoding attributes
+     * @return array
+     */
+    public function getAttributes() {
+        return $this->attributes;
     }
 
     /**
