@@ -109,6 +109,12 @@ class MessageParser {
     private $defaultFrom;
 
     /**
+     * The default BCC of the message
+     * @var string|array
+     */
+    private $defaultBcc;
+
+    /**
      * The debug recipient of the message
      * @var string
      */
@@ -136,12 +142,14 @@ class MessageParser {
      * Parses the provided message and get all data to actually send it
      * @param \ride\library\mail\MailMessage $message The message to parse
      * @param string $defaultSender Address of the default sender
+     * @param string $defaultBcc Address(es) of the default BCC
      * @param string $debugRecipient When set, the message will be parsed to be
      * sent only to this address
      * @return null
      */
-    public function __construct(MailMessage $message, $defaultFrom = null, $debugTo = null) {
+    public function __construct(MailMessage $message, $defaultFrom = null, $defaultBcc = null, $debugTo = null) {
         $this->defaultFrom = $defaultFrom;
+        $this->defaultBcc = $defaultBcc;
         $this->debugTo = $debugTo;
 
         $this->parseMessage($message);
@@ -207,6 +215,11 @@ class MessageParser {
 
         if (!$from && $this->defaultFrom) {
             $from = new MailAddress($this->defaultFrom);
+        }
+
+        if (!$bcc && $this->defaultBcc) {
+            $message->setBcc($this->defaultBcc);
+            $bcc = $message->getBcc();
         }
 
         if ($from) {
