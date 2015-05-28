@@ -47,6 +47,12 @@ abstract class AbstractTransport implements Transport {
     protected $defaultFrom;
 
     /**
+     * The default BCC
+     * @var string|array
+     */
+    protected $defaultBcc;
+
+    /**
      * The debug to address, debug recipient
      * @var string
      */
@@ -65,6 +71,7 @@ abstract class AbstractTransport implements Transport {
         $this->lineBreak = $lineBreak;
 
         $this->defaultFrom = null;
+        $this->defaultBcc = null;
         $this->debugTo = null;
     }
 
@@ -84,6 +91,24 @@ abstract class AbstractTransport implements Transport {
      */
     public function getDefaultFrom() {
         return $this->defaultFrom;
+    }
+
+    /**
+     * Sets the default BCC
+     * @param string|array $bcc Email address(es) as default BCC. This will be
+     * used when a mail has no BCC set
+     * @return null
+     */
+    public function setDefaultBcc($bcc) {
+        $this->defaultBcc = $bcc;
+    }
+
+    /**
+     * Gets the default BCC
+     * @return string|array
+     */
+    public function getDefaultBcc() {
+        return $this->defaultBcc;
     }
 
     /**

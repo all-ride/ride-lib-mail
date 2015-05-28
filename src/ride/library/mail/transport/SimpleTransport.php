@@ -19,7 +19,7 @@ class SimpleTransport extends AbstractTransport {
      * server.
      */
     public function send(MailMessage $message) {
-        $parser = new MessageParser($message, $this->defaultFrom, $this->debugTo);
+        $parser = new MessageParser($message, $this->defaultFrom, $this->defaultBcc, $this->debugTo);
 
         $subject = $parser->getSubject();
         $body = $parser->getBody();
