@@ -142,12 +142,12 @@ class MessageParser {
      * Parses the provided message and get all data to actually send it
      * @param \ride\library\mail\MailMessage $message The message to parse
      * @param string $defaultSender Address of the default sender
-     * @param string $defaultBcc Address(es) of the default BCC
+     * @param array $defaultBcc Address(es) of the default BCC
      * @param string $debugRecipient When set, the message will be parsed to be
      * sent only to this address
      * @return null
      */
-    public function __construct(MailMessage $message, $defaultFrom = null, $defaultBcc = null, $debugTo = null) {
+    public function __construct(MailMessage $message, $defaultFrom = null, array $defaultBcc = null, $debugTo = null) {
         $this->defaultFrom = $defaultFrom;
         $this->defaultBcc = $defaultBcc;
         $this->debugTo = $debugTo;
@@ -217,11 +217,6 @@ class MessageParser {
             $from = new MailAddress($this->defaultFrom);
         }
 
-        if (!$bcc && $this->defaultBcc) {
-            $message->setBcc($this->defaultBcc);
-            $bcc = $message->getBcc();
-        }
-
         if ($from) {
             $this->headers[self::HEADER_FROM] = self::HEADER_FROM . ': ' . $from;
         }
@@ -235,6 +230,11 @@ class MessageParser {
 
             $this->addAddressesToHeaders(self::HEADER_TO, $to);
         } else {
+            if ($this->defaultBcc) {
+                $message->addBcc($this->defaultBcc);
+                $bcc = $message->getBcc();
+            }
+
             $this->addAddressesToHeaders(self::HEADER_TO, $to);
             $this->addAddressesToHeaders(self::HEADER_CC, $cc);
             $this->addAddressesToHeaders(self::HEADER_BCC, $bcc);
