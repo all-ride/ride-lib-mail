@@ -176,6 +176,18 @@ class MailMessage {
     }
 
     /**
+     * Adds recipients to Carbon Copy
+     * @param string|MailAddress|array $bcc The address(es) of the recipient(s)
+     * @return null
+     */
+    public function addCc($cc) {
+        $cc = $this->getAddresses($cc);
+        foreach ($cc as $address) {
+            $this->cc[$address->getEmailAddress()] = $address;
+        }
+    }
+
+    /**
      * Sets the recipients in Carbon Copy
      * @param string|MailAddress|array $cc The address(es) of the recipient(s)
      * @return null
@@ -190,6 +202,18 @@ class MailMessage {
      */
     public function getCc() {
         return $this->cc;
+    }
+
+    /**
+     * Adds recipients to Blind Carbon Copy
+     * @param string|MailAddress|array $bcc The address(es) of the recipient(s)
+     * @return null
+     */
+    public function addBcc($bcc) {
+        $bcc = $this->getAddresses($bcc);
+        foreach ($bcc as $address) {
+            $this->bcc[$address->getEmailAddress()] = $address;
+        }
     }
 
     /**
@@ -494,7 +518,9 @@ class MailMessage {
 
         $result = array();
         foreach ($addresses as $address) {
-            $result[] = $this->getAddress($address);
+            $address = $this->getAddress($address);
+
+            $result[$address->getEmailAddress()] = $address;
         }
 
         return $result;
