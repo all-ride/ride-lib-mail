@@ -100,7 +100,7 @@ abstract class AbstractTransport implements Transport {
      * @return null
      */
     public function setDefaultBcc($bcc) {
-        if (!is_array($bcc)) {
+        if ($bcc !== null && !is_array($bcc)) {
             $bcc = array($bcc);
         }
 
