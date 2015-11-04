@@ -512,7 +512,9 @@ class MailMessage {
      * @return array Array of MailAddress objects
      */
     private function getAddresses($addresses) {
-        if (!is_array($addresses)) {
+        if (!$addresses) {
+            return array();
+        } elseif (!is_array($addresses)) {
             $addresses = array($addresses);
         }
 
