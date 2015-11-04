@@ -520,6 +520,10 @@ class MailMessage {
 
         $result = array();
         foreach ($addresses as $address) {
+            if (!$address) {
+                continue;
+            }
+
             $address = $this->getAddress($address);
 
             $result[$address->getEmailAddress()] = $address;
