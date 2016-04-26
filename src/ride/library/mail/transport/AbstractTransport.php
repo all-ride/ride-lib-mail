@@ -47,6 +47,12 @@ abstract class AbstractTransport implements Transport {
     protected $defaultFrom;
 
     /**
+     * The default replyTo address
+     * @var string
+     */
+    protected $defaultReplyTo;
+
+    /**
      * The default BCC
      * @var string|array
      */
@@ -71,6 +77,7 @@ abstract class AbstractTransport implements Transport {
         $this->lineBreak = $lineBreak;
 
         $this->defaultFrom = null;
+        $this->defaultReplyTo = null;
         $this->defaultBcc = null;
         $this->debugTo = null;
     }
@@ -91,6 +98,23 @@ abstract class AbstractTransport implements Transport {
      */
     public function getDefaultFrom() {
         return $this->defaultFrom;
+    }
+
+    /**
+     * Sets the default replyTo
+     * @param string $replyTo Email address of the default replyTo
+     * @return string
+     */
+    public function setDefaultReplyTo($replyTo) {
+        $this->defaultReplyTo = $replyTo;
+    }
+
+    /**
+     * Gets the default replyTo
+     * @return string
+     */
+    public function getDefaultReplyTo() {
+        return $this->defaultReplyTo;
     }
 
     /**
