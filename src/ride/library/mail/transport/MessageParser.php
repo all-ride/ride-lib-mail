@@ -109,6 +109,12 @@ class MessageParser {
     private $defaultFrom;
 
     /**
+     * The default reply-to of the message
+     * @var string
+     */
+    private $defaultReplyTo;
+
+    /**
      * The default BCC of the message
      * @var string|array
      */
@@ -147,8 +153,9 @@ class MessageParser {
      * sent only to this address
      * @return null
      */
-    public function __construct(MailMessage $message, $defaultFrom = null, array $defaultBcc = null, $debugTo = null) {
+    public function __construct(MailMessage $message, $defaultFrom = null, $defaultReplyTo = null, array $defaultBcc = null, $debugTo = null) {
         $this->defaultFrom = $defaultFrom;
+        $this->defaultReplyTo = $defaultReplyTo;
         $this->defaultBcc = $defaultBcc;
         $this->debugTo = $debugTo;
 
@@ -221,6 +228,10 @@ class MessageParser {
             $this->headers[self::HEADER_FROM] = self::HEADER_FROM . ': ' . $from;
         }
 
+        if (!$replyTo && $this->defaultReplyTo) {
+            $replyTo = new MailAddress($this->defaultReplyTo);
+        }
+
         if ($this->debugTo) {
             if (!is_array($this->debugTo)) {
                 $to = array($this->debugTo);
@@ -238,9 +249,10 @@ class MessageParser {
             $this->addAddressesToHeaders(self::HEADER_TO, $to);
             $this->addAddressesToHeaders(self::HEADER_CC, $cc);
             $this->addAddressesToHeaders(self::HEADER_BCC, $bcc);
-            if ($replyTo) {
-                $this->headers[self::HEADER_REPLY_TO] = self::HEADER_REPLY_TO . ': ' . $replyTo;
-            }
+        }
+
+        if ($replyTo) {
+            $this->headers[self::HEADER_REPLY_TO] = self::HEADER_REPLY_TO . ': ' . $replyTo;
         }
     }
 
